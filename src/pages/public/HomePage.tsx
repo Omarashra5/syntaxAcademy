@@ -159,7 +159,7 @@ export const HomePage: React.FC = () => {
       : settings?.heroSubtitleEn || t.hero.subtitle;
 
   const phone = settings?.contactPhone || '01012329975';
-  const email = settings?.contactEmail || 'admissions@syntaxacademy.edu';
+  const email = settings?.contactEmail || 'syntaxacademy02@gmail.com';
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-[#070912] text-slate-900 dark:text-slate-100">

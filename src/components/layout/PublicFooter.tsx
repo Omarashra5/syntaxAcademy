@@ -12,7 +12,7 @@ interface PublicFooterProps {
 export const PublicFooter: React.FC<PublicFooterProps> = ({ settings, tracks = [] }) => {
   const { language, t } = useLanguage();
   const phone = settings?.contactPhone || '01012329975';
-  const email = settings?.contactEmail || 'admissions@syntaxacademy.edu';
+  const email = settings?.contactEmail || 'syntaxacademy02@gmail.com';
 
   return (
     <footer className="border-t border-slate-200 dark:border-slate-800/80 bg-white dark:bg-[#05070E]">
@@ -121,16 +121,6 @@ export const PublicFooter: React.FC<PublicFooterProps> = ({ settings, tracks = [
                 {settings.socialLinks.facebook && (
                   <a href={settings.socialLinks.facebook} target="_blank" rel="noopener noreferrer" className="hover:text-violet-500">
                     Facebook
-                  </a>
-                )}
-                {settings.socialLinks.linkedin && (
-                  <a href={settings.socialLinks.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-violet-500">
-                    LinkedIn
-                  </a>
-                )}
-                {settings.socialLinks.youtube && (
-                  <a href={settings.socialLinks.youtube} target="_blank" rel="noopener noreferrer" className="hover:text-violet-500">
-                    YouTube
                   </a>
                 )}
                 {settings.socialLinks.whatsapp && (

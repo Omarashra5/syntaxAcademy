@@ -467,7 +467,7 @@ export const INITIAL_SETTINGS: Omit<AcademySettings, 'updatedAt'> = {
   academyName: 'Syntax Academy',
   logoUrl: '',
   contactPhone: '01012329975',
-  contactEmail: 'admissions@syntaxacademy.edu',
+  contactEmail: 'syntaxacademy02@gmail.com',
   defaultLanguage: 'en',
   applicationsOpen: true,
   heroHeadlineEn: 'Build Your Future With Technology.',
@@ -483,10 +483,8 @@ export const INITIAL_SETTINGS: Omit<AcademySettings, 'updatedAt'> = {
   aboutBodyAr:
     'تعمل Syntax Academy على سد الفجوة بين الدراسة النظرية وهندسة البرمجيات الاحترافية. من خلال مسارات تدريبية منظمة، ومراجعات عملية، ودروس مسجلة، وشهادات موثقة برمز تحقق، يتخرج المتدرب بمهارات حقيقية يثق بها سوق العمل.',
   socialLinks: {
-    facebook: 'https://facebook.com',
-    linkedin: 'https://linkedin.com',
-    youtube: 'https://youtube.com',
-    github: 'https://github.com',
+    facebook: 'https://www.facebook.com/share/p/19zaP2jGjx/',
+    github: 'https://github.com/omarashra5',
     whatsapp: 'https://wa.me/201012329975',
   },
 };
