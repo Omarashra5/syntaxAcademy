@@ -9,7 +9,9 @@ import { NotificationBell } from '../common/NotificationBell';
 export const PublicNavbar: React.FC = () => {
   const { language, toggleLanguage, t } = useLanguage();
   const { theme, toggleTheme } = useTheme();
-  const { user } = useAuth();
+  const { user, isServerAdmin, isFirebaseAdmin } = useAuth();
+  const isAdmin = isServerAdmin || isFirebaseAdmin;
+  const dashboardPath = isAdmin ? '/admin' : '/dashboard';
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
@@ -116,9 +118,9 @@ export const PublicNavbar: React.FC = () => {
 
           {user ? (
             <div className="hidden sm:flex items-center gap-2 shrink-0">
-              <NotificationBell recipientUid={user.uid} />
+              {!isAdmin && <NotificationBell recipientUid={user.uid} />}
               <Link
-                to="/dashboard"
+                to={dashboardPath}
                 className="px-4 py-2 rounded-xl bg-violet-600 hover:bg-violet-500 text-white text-xs font-semibold transition-colors whitespace-nowrap shrink-0"
               >
                 {t.nav.dashboard}
@@ -209,7 +211,7 @@ export const PublicNavbar: React.FC = () => {
           <div className="pt-3 border-t border-slate-200 dark:border-slate-800 flex items-center gap-2">
             {user ? (
               <Link
-                to="/dashboard"
+                to={dashboardPath}
                 onClick={() => setMobileOpen(false)}
                 className="w-full text-center px-4 py-2.5 rounded-xl bg-violet-600 text-white text-sm font-semibold"
               >

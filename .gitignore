@@ -7,3 +7,10 @@ coverage/
 .env*
 !.env.example
 .admin-credentials.json
+
+.vercel
+.env*
+
+server.backup.ts
+
+server.backup.ts

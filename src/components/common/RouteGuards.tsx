@@ -1,9 +1,10 @@
+
 import React from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 
 export const ProtectedStudentRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { user, studentProfile, loading } = useAuth();
+  const { user, studentProfile, isFirebaseAdmin, loading } = useAuth();
   const location = useLocation();
 
   if (loading) {
@@ -16,6 +17,10 @@ export const ProtectedStudentRoute: React.FC<{ children: React.ReactNode }> = ({
 
   if (!user) {
     return <Navigate to="/login" state={{ from: location.pathname }} replace />;
+  }
+
+  if (isFirebaseAdmin) {
+    return <Navigate to="/" replace />;
   }
 
   if (studentProfile?.status === 'suspended') {
