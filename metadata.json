@@ -1,0 +1,8 @@
+{
+  "name": "Syntax Academy",
+  "description": "Syntax Academy is a bilingual (English/Arabic) programming and technology education platform featuring dynamic learning tracks, student applications, course playback, verified PDF certificates, and a secured admin console.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

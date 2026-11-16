@@ -1,0 +1,412 @@
+{
+  "entities": {
+    "AdminUser": {
+      "title": "AdminUser",
+      "description": "Trusted registry document granting administrative privileges to a specific Firebase UID.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "minLength": 1, "maxLength": 128 },
+        "email": { "type": "string", "format": "email", "maxLength": 200 },
+        "displayName": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "displayName", "createdAt"]
+    },
+    "StudentUser": {
+      "title": "StudentUser",
+      "description": "Student profile document storing personal information and account status.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "minLength": 1, "maxLength": 128 },
+        "fullName": { "type": "string", "minLength": 2, "maxLength": 120 },
+        "email": { "type": "string", "format": "email", "maxLength": 200 },
+        "phone": { "type": "string", "maxLength": 40 },
+        "avatarUrl": { "type": "string", "maxLength": 1000 },
+        "bio": { "type": "string", "maxLength": 500 },
+        "role": { "type": "string", "enum": ["student"] },
+        "status": { "type": "string", "enum": ["active", "suspended"] },
+        "internalNotes": { "type": "string", "maxLength": 2000 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "fullName", "email", "role", "status", "createdAt", "updatedAt"]
+    },
+    "Instructor": {
+      "title": "Instructor",
+      "description": "Academy instructor profile displayed publicly and assigned to tracks and courses.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$", "maxLength": 128 },
+        "nameEn": { "type": "string", "minLength": 2, "maxLength": 120 },
+        "nameAr": { "type": "string", "minLength": 2, "maxLength": 120 },
+        "specializationEn": { "type": "string", "minLength": 2, "maxLength": 200 },
+        "specializationAr": { "type": "string", "minLength": 2, "maxLength": 200 },
+        "bioEn": { "type": "string", "maxLength": 1500 },
+        "bioAr": { "type": "string", "maxLength": 1500 },
+        "avatarUrl": { "type": "string", "maxLength": 1000 },
+        "isActive": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "nameEn", "nameAr", "specializationEn", "specializationAr", "isActive", "createdAt", "updatedAt"]
+    },
+    "LearningTrack": {
+      "title": "LearningTrack",
+      "description": "Structured educational track or program offered by Syntax Academy.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$", "maxLength": 128 },
+        "slug": { "type": "string", "pattern": "^[a-z0-9\\-]+$", "maxLength": 128 },
+        "category": { "type": "string", "enum": ["programming", "office", "language", "program"] },
+        "titleEn": { "type": "string", "minLength": 2, "maxLength": 160 },
+        "titleAr": { "type": "string", "minLength": 2, "maxLength": 160 },
+        "descriptionEn": { "type": "string", "minLength": 10, "maxLength": 3000 },
+        "descriptionAr": { "type": "string", "minLength": 10, "maxLength": 3000 },
+        "thumbnailUrl": { "type": "string", "maxLength": 1000 },
+        "originalPrice": { "type": "number" },
+        "discountedPrice": { "type": "number" },
+        "durationEn": { "type": "string", "maxLength": 80 },
+        "durationAr": { "type": "string", "maxLength": 80 },
+        "instructorId": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$", "maxLength": 128 },
+        "skills": { "type": "array" },
+        "objectivesEn": { "type": "array" },
+        "objectivesAr": { "type": "array" },
+        "curriculum": { "type": "array" },
+        "technologies": { "type": "array" },
+        "faqs": { "type": "array" },
+        "googleFormUrl": { "type": "string", "maxLength": 500 },
+        "isPublished": { "type": "boolean" },
+        "applicationsOpen": { "type": "boolean" },
+        "isArchived": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "slug", "category", "titleEn", "titleAr", "descriptionEn", "descriptionAr", "originalPrice", "discountedPrice", "instructorId", "isPublished", "applicationsOpen", "isArchived", "createdAt", "updatedAt"]
+    },
+    "Application": {
+      "title": "Application",
+      "description": "Student application for a learning track or educational program.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$", "maxLength": 128 },
+        "studentUid": { "type": "string", "minLength": 1, "maxLength": 128 },
+        "studentName": { "type": "string", "minLength": 2, "maxLength": 120 },
+        "studentEmail": { "type": "string", "format": "email", "maxLength": 200 },
+        "studentPhone": { "type": "string", "minLength": 6, "maxLength": 40 },
+        "trackId": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$", "maxLength": 128 },
+        "trackTitleEn": { "type": "string", "maxLength": 160 },
+        "trackTitleAr": { "type": "string", "maxLength": 160 },
+        "message": { "type": "string", "maxLength": 1500 },
+        "status": { "type": "string", "enum": ["pending", "under_review", "accepted", "rejected", "enrolled"] },
+        "adminMessage": { "type": "string", "maxLength": 1500 },
+        "internalNote": { "type": "string", "maxLength": 1500 },
+        "googleFormUrl": { "type": "string", "maxLength": 500 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "studentUid", "studentName", "studentEmail", "studentPhone", "trackId", "trackTitleEn", "trackTitleAr", "status", "createdAt", "updatedAt"]
+    },
+    "Course": {
+      "title": "Course",
+      "description": "Published or draft recorded course assigned to a learning track and instructor.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$", "maxLength": 128 },
+        "trackId": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$", "maxLength": 128 },
+        "instructorId": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$", "maxLength": 128 },
+        "titleEn": { "type": "string", "minLength": 2, "maxLength": 200 },
+        "titleAr": { "type": "string", "minLength": 2, "maxLength": 200 },
+        "descriptionEn": { "type": "string", "maxLength": 3000 },
+        "descriptionAr": { "type": "string", "maxLength": 3000 },
+        "thumbnailUrl": { "type": "string", "maxLength": 1000 },
+        "previewVideoUrl": { "type": "string", "maxLength": 500 },
+        "isPublished": { "type": "boolean" },
+        "isPublicPreview": { "type": "boolean" },
+        "isArchived": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "trackId", "instructorId", "titleEn", "titleAr", "isPublished", "isPublicPreview", "isArchived", "createdAt", "updatedAt"]
+    },
+    "Lesson": {
+      "title": "Lesson",
+      "description": "Individual lesson within a course section.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$", "maxLength": 128 },
+        "courseId": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$", "maxLength": 128 },
+        "sectionTitleEn": { "type": "string", "maxLength": 160 },
+        "sectionTitleAr": { "type": "string", "maxLength": 160 },
+        "titleEn": { "type": "string", "minLength": 2, "maxLength": 200 },
+        "titleAr": { "type": "string", "minLength": 2, "maxLength": 200 },
+        "descriptionEn": { "type": "string", "maxLength": 3000 },
+        "descriptionAr": { "type": "string", "maxLength": 3000 },
+        "videoUrl": { "type": "string", "maxLength": 500 },
+        "durationMinutes": { "type": "number" },
+        "orderIndex": { "type": "number" },
+        "isFreePreview": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "courseId", "titleEn", "titleAr", "orderIndex", "isFreePreview", "createdAt", "updatedAt"]
+    },
+    "Enrollment": {
+      "title": "Enrollment",
+      "description": "Grants a student access to restricted courses in a track.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$", "maxLength": 260 },
+        "studentUid": { "type": "string", "minLength": 1, "maxLength": 128 },
+        "trackId": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$", "maxLength": 128 },
+        "status": { "type": "string", "enum": ["active", "completed", "revoked"] },
+        "completedLessonIds": { "type": "array" },
+        "enrolledAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "studentUid", "trackId", "status", "completedLessonIds", "enrolledAt", "updatedAt"]
+    },
+    "CourseComment": {
+      "title": "CourseComment",
+      "description": "Student comment and admin reply on a published course.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$", "maxLength": 128 },
+        "courseId": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$", "maxLength": 128 },
+        "studentUid": { "type": "string", "minLength": 1, "maxLength": 128 },
+        "studentName": { "type": "string", "minLength": 2, "maxLength": 120 },
+        "studentAvatarUrl": { "type": "string", "maxLength": 1000 },
+        "content": { "type": "string", "minLength": 2, "maxLength": 1000 },
+        "status": { "type": "string", "enum": ["pending", "approved", "hidden"] },
+        "adminReply": { "type": "string", "maxLength": 1000 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "courseId", "studentUid", "studentName", "content", "status", "createdAt", "updatedAt"]
+    },
+    "Certificate": {
+      "title": "Certificate",
+      "description": "Official English-only completion certificate with verification status.",
+      "type": "object",
+      "properties": {
+        "certificateId": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$", "maxLength": 64 },
+        "studentUid": { "type": "string", "maxLength": 128 },
+        "studentFullName": { "type": "string", "minLength": 2, "maxLength": 160 },
+        "trackId": { "type": "string", "maxLength": 128 },
+        "trackName": { "type": "string", "minLength": 2, "maxLength": 160 },
+        "instructorId": { "type": "string", "maxLength": 128 },
+        "instructorName": { "type": "string", "minLength": 2, "maxLength": 160 },
+        "completionDate": { "type": "string", "maxLength": 40 },
+        "grade": { "type": "string", "maxLength": 80 },
+        "status": { "type": "string", "enum": ["valid", "revoked"] },
+        "revokedReason": { "type": "string", "maxLength": 300 },
+        "issuedAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["certificateId", "studentFullName", "trackName", "instructorName", "completionDate", "status", "issuedAt", "updatedAt"]
+    },
+    "Notification": {
+      "title": "Notification",
+      "description": "Persisted real-time notification for students or administrators.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$", "maxLength": 128 },
+        "recipientUid": { "type": "string", "minLength": 1, "maxLength": 128 },
+        "type": { "type": "string", "enum": ["application_submitted", "application_accepted", "application_rejected", "course_available", "certificate_issued", "announcement", "new_student", "new_comment", "new_contact"] },
+        "titleEn": { "type": "string", "minLength": 2, "maxLength": 200 },
+        "titleAr": { "type": "string", "minLength": 2, "maxLength": 200 },
+        "bodyEn": { "type": "string", "minLength": 2, "maxLength": 1200 },
+        "bodyAr": { "type": "string", "minLength": 2, "maxLength": 1200 },
+        "actionUrl": { "type": "string", "maxLength": 500 },
+        "phoneNumber": { "type": "string", "maxLength": 40 },
+        "googleFormUrl": { "type": "string", "maxLength": 500 },
+        "isRead": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "recipientUid", "type", "titleEn", "titleAr", "bodyEn", "bodyAr", "isRead", "createdAt", "updatedAt"]
+    },
+    "Announcement": {
+      "title": "Announcement",
+      "description": "Academy-wide announcement displayed on student dashboards.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$", "maxLength": 128 },
+        "titleEn": { "type": "string", "minLength": 2, "maxLength": 200 },
+        "titleAr": { "type": "string", "minLength": 2, "maxLength": 200 },
+        "bodyEn": { "type": "string", "minLength": 4, "maxLength": 2000 },
+        "bodyAr": { "type": "string", "minLength": 4, "maxLength": 2000 },
+        "priority": { "type": "string", "enum": ["normal", "important"] },
+        "isPublished": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "titleEn", "titleAr", "bodyEn", "bodyAr", "priority", "isPublished", "createdAt", "updatedAt"]
+    },
+    "Testimonial": {
+      "title": "Testimonial",
+      "description": "Approved student testimonial showcased on the public website.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$", "maxLength": 128 },
+        "studentUid": { "type": "string", "maxLength": 128 },
+        "studentName": { "type": "string", "minLength": 2, "maxLength": 120 },
+        "trackName": { "type": "string", "minLength": 2, "maxLength": 120 },
+        "quoteEn": { "type": "string", "minLength": 10, "maxLength": 600 },
+        "quoteAr": { "type": "string", "minLength": 10, "maxLength": 600 },
+        "isApproved": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "studentName", "trackName", "quoteEn", "quoteAr", "isApproved", "createdAt", "updatedAt"]
+    },
+    "Payment": {
+      "title": "Payment",
+      "description": "Manual payment tracking record for student track enrollment.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$", "maxLength": 128 },
+        "studentUid": { "type": "string", "minLength": 1, "maxLength": 128 },
+        "studentName": { "type": "string", "minLength": 2, "maxLength": 120 },
+        "studentEmail": { "type": "string", "format": "email", "maxLength": 200 },
+        "trackId": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$", "maxLength": 128 },
+        "trackTitle": { "type": "string", "maxLength": 160 },
+        "totalFee": { "type": "number" },
+        "amountPaid": { "type": "number" },
+        "currency": { "type": "string", "enum": ["EGP"] },
+        "paymentMethod": { "type": "string", "maxLength": 80 },
+        "status": { "type": "string", "enum": ["pending", "partially_paid", "paid"] },
+        "paymentDate": { "type": "string", "maxLength": 40 },
+        "notes": { "type": "string", "maxLength": 500 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "studentUid", "studentName", "trackId", "trackTitle", "totalFee", "amountPaid", "currency", "paymentMethod", "status", "paymentDate", "createdAt", "updatedAt"]
+    },
+    "AcademySettings": {
+      "title": "AcademySettings",
+      "description": "Global platform configuration and public contact/homepage settings.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$", "maxLength": 64 },
+        "academyName": { "type": "string", "minLength": 2, "maxLength": 120 },
+        "logoUrl": { "type": "string", "maxLength": 1000 },
+        "contactPhone": { "type": "string", "maxLength": 40 },
+        "contactEmail": { "type": "string", "format": "email", "maxLength": 200 },
+        "defaultLanguage": { "type": "string", "enum": ["en", "ar"] },
+        "applicationsOpen": { "type": "boolean" },
+        "heroHeadlineEn": { "type": "string", "maxLength": 200 },
+        "heroHeadlineAr": { "type": "string", "maxLength": 200 },
+        "heroSubtitleEn": { "type": "string", "maxLength": 400 },
+        "heroSubtitleAr": { "type": "string", "maxLength": 400 },
+        "aboutTitleEn": { "type": "string", "maxLength": 200 },
+        "aboutTitleAr": { "type": "string", "maxLength": 200 },
+        "aboutBodyEn": { "type": "string", "maxLength": 2000 },
+        "aboutBodyAr": { "type": "string", "maxLength": 2000 },
+        "socialLinks": { "type": "object" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "academyName", "contactPhone", "contactEmail", "defaultLanguage", "applicationsOpen", "updatedAt"]
+    },
+    "AuditLog": {
+      "title": "AuditLog",
+      "description": "Immutable administrative action log.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$", "maxLength": 128 },
+        "actor": { "type": "string", "maxLength": 160 },
+        "action": { "type": "string", "maxLength": 120 },
+        "targetType": { "type": "string", "maxLength": 80 },
+        "targetId": { "type": "string", "maxLength": 128 },
+        "details": { "type": "string", "maxLength": 1000 },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "actor", "action", "targetType", "targetId", "createdAt"]
+    },
+    "ContactMessage": {
+      "title": "ContactMessage",
+      "description": "Public inquiry message submitted through the Contact Us section.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$", "maxLength": 128 },
+        "name": { "type": "string", "minLength": 2, "maxLength": 120 },
+        "email": { "type": "string", "format": "email", "maxLength": 200 },
+        "phone": { "type": "string", "maxLength": 40 },
+        "subject": { "type": "string", "minLength": 2, "maxLength": 200 },
+        "message": { "type": "string", "minLength": 5, "maxLength": 2000 },
+        "status": { "type": "string", "enum": ["new", "resolved"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "name", "email", "subject", "message", "status", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/admins/{uid}": {
+      "schema": { "$ref": "#/entities/AdminUser" },
+      "description": "Admin user registry."
+    },
+    "/users/{uid}": {
+      "schema": { "$ref": "#/entities/StudentUser" },
+      "description": "Student user profiles containing PII (email, phone)."
+    },
+    "/instructors/{instructorId}": {
+      "schema": { "$ref": "#/entities/Instructor" },
+      "description": "Publicly visible academy instructors."
+    },
+    "/tracks/{trackId}": {
+      "schema": { "$ref": "#/entities/LearningTrack" },
+      "description": "Learning tracks and pricing."
+    },
+    "/applications/{applicationId}": {
+      "schema": { "$ref": "#/entities/Application" },
+      "description": "Student track applications."
+    },
+    "/courses/{courseId}": {
+      "schema": { "$ref": "#/entities/Course" },
+      "description": "Courses associated with tracks."
+    },
+    "/courses/{courseId}/lessons/{lessonId}": {
+      "schema": { "$ref": "#/entities/Lesson" },
+      "description": "Recorded lessons belonging to a course."
+    },
+    "/enrollments/{enrollmentId}": {
+      "schema": { "$ref": "#/entities/Enrollment" },
+      "description": "Student track enrollments and completed lesson progress."
+    },
+    "/comments/{commentId}": {
+      "schema": { "$ref": "#/entities/CourseComment" },
+      "description": "Student comments on courses."
+    },
+    "/certificates/{certificateId}": {
+      "schema": { "$ref": "#/entities/Certificate" },
+      "description": "Issued completion certificates verified publicly by ID."
+    },
+    "/notifications/{notificationId}": {
+      "schema": { "$ref": "#/entities/Notification" },
+      "description": "Real-time notifications for students and admins."
+    },
+    "/announcements/{announcementId}": {
+      "schema": { "$ref": "#/entities/Announcement" },
+      "description": "Academy announcements."
+    },
+    "/testimonials/{testimonialId}": {
+      "schema": { "$ref": "#/entities/Testimonial" },
+      "description": "Student testimonials."
+    },
+    "/payments/{paymentId}": {
+      "schema": { "$ref": "#/entities/Payment" },
+      "description": "Manual payment tracking records."
+    },
+    "/settings/{settingId}": {
+      "schema": { "$ref": "#/entities/AcademySettings" },
+      "description": "Global Syntax Academy settings."
+    },
+    "/auditLogs/{logId}": {
+      "schema": { "$ref": "#/entities/AuditLog" },
+      "description": "Immutable admin audit log entries."
+    },
+    "/contactMessages/{messageId}": {
+      "schema": { "$ref": "#/entities/ContactMessage" },
+      "description": "Public contact inquiries."
+    }
+  }
+}

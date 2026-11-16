@@ -1,0 +1,1097 @@
+# MASTER DEVELOPMENT PROMPT — SYNTAX ACADEMY
+## Complete Professional Online Learning Management Platform
+
+Act as a Senior Full-Stack Software Engineer, UI/UX Designer, Database Architect, Security Engineer, and QA Engineer.
+
+Your mission is to BUILD a complete, production-ready online learning platform for **Syntax Academy**, a programming and technology education academy.
+
+This is a real educational business platform, not a demo, prototype, or static landing page.
+
+You must implement all features with functional frontend interfaces, real database operations, authentication, authorization, validation, and proper error handling.
+
+Do not create fake buttons, simulated functionality, hardcoded dashboard statistics, or frontend-only features.
+
+---
+
+# 1. CORE REQUIREMENTS
+
+Build a complete platform with two completely separate experiences:
+
+1. Public Website + Student Dashboard.
+2. Private Admin Dashboard.
+
+The platform must be fully functional and connected to Firebase.
+
+### CRITICAL TECHNOLOGY RULES
+
+- Use Firebase Authentication for user registration and login.
+- Support Email/Password authentication.
+- Support Google Sign-In.
+- Use Firebase Firestore as the primary database for platform data.
+- Use Firebase Storage for profile pictures, course thumbnails, and uploaded files when needed.
+- Use Firebase Cloud Functions or secure backend endpoints for sensitive operations.
+- NEVER use Supabase.
+- Do not use Supabase Auth, Supabase Database, or Supabase Storage.
+- Do not introduce unnecessary external database services.
+- Keep Firebase configuration in environment variables.
+- Create a clear `.env.example` file.
+- Never expose private credentials or administrative secrets in frontend code.
+
+The project should be easy to connect to my Firebase project by providing the Firebase configuration.
+
+I should only need to configure Firebase credentials and deploy the application. Do not require me to manually implement the application's business logic.
+
+---
+
+# 2. BRAND IDENTITY & DESIGN
+
+Brand name: Syntax Academy
+
+The platform should look like a premium international technology education platform.
+
+### Visual identity
+
+Create a modern, elegant, professional interface.
+
+Design direction:
+- Premium dark and light themes.
+- Deep black and dark navy backgrounds.
+- Purple and violet accent colors.
+- Beautiful gradients used carefully.
+- Soft shadows.
+- Smooth transitions.
+- Modern typography.
+- Clean cards and elegant buttons.
+- Professional icons.
+- Beautiful empty states.
+- Subtle animations.
+- Responsive layouts.
+
+Avoid excessive animations, visual clutter, and unnecessary effects.
+
+### Responsive design
+
+The entire platform must work perfectly on:
+- Desktop.
+- Laptop.
+- Tablet.
+- Mobile phones.
+
+### Theme system
+
+Implement:
+- Light Mode.
+- Dark Mode.
+- Persistent theme preference.
+- Smooth theme switching.
+
+### Language system
+
+Support two complete languages:
+- English.
+- Arabic.
+
+Requirements:
+- A language switcher available throughout the platform.
+- Complete Arabic translations.
+- Proper RTL layout in Arabic.
+- Proper LTR layout in English.
+- Translate navigation, forms, notifications, errors, buttons, dashboards, and all other interface elements.
+- Save the user's language preference.
+
+The platform must never mix Arabic and English unintentionally.
+
+---
+
+# 3. PUBLIC WEBSITE
+
+Create a professional homepage containing:
+
+### Navigation bar
+- Syntax Academy logo.
+- Home.
+- About Us.
+- Learning Tracks.
+- Instructors.
+- Latest Courses.
+- Contact Us.
+- Login.
+- Register.
+- Language switcher.
+- Theme switcher.
+
+### Hero section
+
+Create a strong headline:
+
+"Build Your Future With Technology."
+
+Supporting text:
+
+"Learn programming, develop real-world skills, and build your future with Syntax Academy."
+
+Include:
+- Explore Learning Tracks button.
+- Join Syntax Academy button.
+- Professional visual elements.
+
+### About Section
+
+Introduce Syntax Academy as an academy focused on teaching programming and technology through structured learning paths and practical experience.
+
+### Learning Tracks Section
+
+Display available tracks as attractive cards.
+
+Each card should contain:
+- Track name.
+- Description.
+- Track image.
+- Instructor information.
+- Duration.
+- Skills students will learn.
+- Original price.
+- Discounted price.
+- Apply Now button.
+
+Tracks must be dynamically loaded from Firestore.
+
+Do not hardcode the track list in the frontend.
+
+### Instructors Section
+
+Display instructors dynamically.
+
+Initial instructors:
+
+1. Omar Ashraf.
+2. Mohamed Ashraf.
+3. Malak Wael.
+
+Each instructor should have:
+- Profile image.
+- Full name.
+- Professional biography.
+- Specialization.
+- Courses and tracks.
+
+The administrator must be able to add, edit, and delete instructors.
+
+### Latest Courses Section
+
+Display recently published courses and recorded lessons.
+
+### Testimonials Section
+
+Allow displaying approved student testimonials.
+
+### Contact Section
+
+Include contact information and a clear way to contact the academy.
+
+### Footer
+
+Include:
+- Academy logo.
+- Quick links.
+- Learning tracks.
+- Contact information.
+- Social media links.
+- Copyright.
+
+---
+
+# 4. LEARNING TRACKS & PRICING
+
+Create the following initial learning tracks.
+
+All prices are in Egyptian Pounds (EGP).
+
+| Track | Original Price | Discounted Price |
+|---|---:|---:|
+| Frontend Development | 3000 EGP | 2500 EGP |
+| Backend Development | 4500 EGP | 3500 EGP |
+| Full Stack Development | 6000 EGP | 5000 EGP |
+| Microsoft Office | 1200 EGP | 900 EGP |
+
+Important:
+- Clearly show the original price with strikethrough.
+- Highlight the discounted price.
+- Display the savings.
+- Do not randomly change these initial prices.
+- The administrator must be able to edit prices later.
+
+Each track must have a dedicated details page containing:
+- Track overview.
+- Description.
+- Learning objectives.
+- Curriculum.
+- Technologies covered.
+- Instructor.
+- Duration.
+- Pricing.
+- Frequently asked questions.
+- Application button.
+
+The administrator must be able to create unlimited additional tracks.
+
+---
+
+# 5. AUTHENTICATION SYSTEM
+
+Implement a complete authentication system using Firebase Authentication.
+
+### Registration
+
+Students can create accounts using:
+- Full name.
+- Email address.
+- Password.
+- Confirm password.
+
+Also provide Google Sign-In.
+
+### Login
+
+Support:
+- Email and password.
+- Google Sign-In.
+
+### Additional features
+
+- Forgot password.
+- Password reset email.
+- Email verification.
+- Logout.
+- Persistent login.
+- Protected routes.
+- Proper loading states.
+- Friendly error messages.
+- Form validation.
+
+Every student must have a unique Firebase UID.
+
+Create a student profile document in Firestore after successful registration.
+
+Do not allow a user to become an administrator by changing frontend data or modifying their Firestore profile.
+
+---
+
+# 6. STUDENT DASHBOARD
+
+Create a dedicated student dashboard.
+
+Each student should have access to:
+
+### Dashboard Overview
+
+Display:
+- Welcome message.
+- Profile information.
+- Applied tracks.
+- Application status.
+- Enrolled courses.
+- Completed courses.
+- Earned certificates.
+- Notifications.
+
+### My Applications
+
+Display all submitted applications.
+
+Application statuses:
+
+- Pending.
+- Under Review.
+- Accepted.
+- Rejected.
+- Enrolled.
+
+Display:
+- Track name.
+- Application date.
+- Current status.
+- Admin response when available.
+
+### My Courses
+
+Display courses assigned or made available to the student.
+
+### My Certificates
+
+Display all certificates issued to the student.
+
+Allow:
+- Certificate preview.
+- Download PDF.
+- View certificate details.
+- Verify certificate authenticity.
+
+### My Profile
+
+Students can update:
+- Profile picture.
+- Full name.
+- Phone number.
+- Basic personal information.
+
+Email changes must use Firebase's secure account-management procedures.
+
+---
+
+# 7. APPLICATION SYSTEM
+
+This is one of the most important features.
+
+Students must be able to apply for:
+
+- Programming tracks.
+- Microsoft Office.
+- Additional educational programs.
+- Languages or language courses created by the administrator.
+
+### Application form
+
+Include:
+- Student full name.
+- Email.
+- Phone number.
+- Selected track or program.
+- Additional message.
+- Application submission date.
+
+Automatically associate every application with the authenticated student's UID.
+
+Prevent duplicate pending applications for the same track.
+
+### Admin notifications
+
+When a student submits an application, immediately save it to Firestore and display it in the administrator dashboard.
+
+The administrator must receive a visible notification.
+
+The application details must include:
+
+- Student name.
+- Student email.
+- Student phone number.
+- Requested track.
+- Submission date.
+- Application status.
+
+### Admin application management
+
+The administrator can:
+
+- View applications.
+- Search applications.
+- Filter by track.
+- Filter by status.
+- Accept applications.
+- Reject applications.
+- Add an internal note.
+- Add a message for the student.
+
+### Acceptance workflow
+
+When the administrator accepts an application:
+
+1. Update the application status to Accepted.
+2. Create a notification for the student.
+3. Display a clear acceptance message in the student's dashboard.
+4. Tell the student to contact the academy at:
+
+**01012329975**
+
+The notification should say:
+
+"Congratulations! Your application for [Track Name] at Syntax Academy has been accepted.
+
+Please contact us at 01012329975 to receive the Google Form required to complete your registration."
+
+Provide a clickable phone number using the `tel:` protocol.
+
+The administrator must be able to configure the Google Forms URL for each track.
+
+If a form URL is configured, show a button allowing the student to open the form.
+
+Do not invent a Google Forms URL.
+
+When an application is rejected, send an appropriate notification without exposing internal administrative notes.
+
+---
+
+# 8. ADMIN DASHBOARD — COMPLETELY SEPARATE
+
+Create a dedicated administrative area.
+
+Route example:
+
+`/admin`
+
+This must be a completely separate interface from the student dashboard.
+
+The admin dashboard must have:
+- Its own login screen.
+- Its own sidebar.
+- Its own navigation.
+- Its own dashboard overview.
+- Its own management pages.
+
+### IMPORTANT ADMIN SECURITY
+
+Initial administrator password:
+
+`syntaxomar@01012G.com`
+
+Implement a secure initial administrator login using a server-side environment secret.
+
+Requirements:
+
+- Never hardcode the password in frontend JavaScript.
+- Never store the plaintext admin password in Firestore.
+- Never expose the password through API responses.
+- Verify the password on the server.
+- Use secure sessions or Firebase custom claims.
+- Protect every administrative API and database operation.
+- Do not rely on hiding the admin page or checking a localStorage flag.
+- Students must never be able to access administrative functions.
+- Provide a secure way to rotate the initial password.
+
+The administrator must be able to access the dashboard independently of normal student accounts.
+
+---
+
+# 9. ADMIN DASHBOARD OVERVIEW
+
+Create an attractive analytics dashboard.
+
+Display real statistics calculated from Firestore:
+
+- Total registered students.
+- Total applications.
+- Pending applications.
+- Accepted applications.
+- Rejected applications.
+- Total learning tracks.
+- Published courses.
+- Total instructors.
+- Certificates issued.
+- Recent student registrations.
+- Recent applications.
+
+Add charts for:
+- Applications over time.
+- Applications by learning track.
+- Application status distribution.
+
+All statistics must come from actual database records.
+
+Include recent activity.
+
+---
+
+# 10. TRACK MANAGEMENT
+
+Create a complete Track Management section.
+
+The administrator must be able to:
+
+- Add a new track.
+- Edit an existing track.
+- Delete a track.
+- Publish a track.
+- Unpublish a track.
+- Change prices.
+- Upload a track thumbnail.
+- Assign instructors.
+- Add descriptions.
+- Add curriculum sections.
+- Add learning objectives.
+- Set course duration.
+- Set application availability.
+- Configure a Google Forms URL.
+- Choose whether the track is visible publicly.
+
+Track creation form:
+
+- Track name (Arabic and English).
+- Description (Arabic and English).
+- Thumbnail.
+- Original price.
+- Discounted price.
+- Duration.
+- Instructor.
+- Curriculum.
+- Learning objectives.
+- Technologies.
+- Google Forms URL.
+- Publication status.
+
+Deleting a track must not automatically destroy existing student application records or issued certificates.
+
+Use safe archival or soft deletion where appropriate.
+
+---
+
+# 11. INSTRUCTOR MANAGEMENT
+
+Create a dedicated instructor management page.
+
+The administrator can:
+
+- Add instructors.
+- Edit instructor details.
+- Delete instructors.
+- Upload profile pictures.
+- Add biographies.
+- Add specializations.
+- Assign instructors to tracks.
+- View courses associated with each instructor.
+
+Initial instructors:
+
+- Omar Ashraf.
+- Mohamed Ashraf.
+- Malak Wael.
+
+All information must be stored in Firestore.
+
+---
+
+# 12. COURSE PUBLISHING SYSTEM
+
+The administrator needs to publish recorded lessons and educational content.
+
+Create a dedicated Course Management section.
+
+Admin can:
+
+- Create a course.
+- Edit a course.
+- Delete or archive a course.
+- Publish or unpublish.
+- Assign it to a track.
+- Add a title.
+- Add a description.
+- Upload a thumbnail.
+- Add a video URL.
+- Add lesson content.
+- Organize lessons into sections.
+- Set the instructor.
+- Choose course visibility.
+
+Support video embedding from authorized providers such as YouTube.
+
+Do not attempt to bypass private video permissions.
+
+### Student course experience
+
+Students should be able to:
+
+- View published courses.
+- Open course details.
+- Watch available lessons.
+- View lesson descriptions.
+- Mark lessons as completed.
+- Track their learning progress.
+- Comment on courses.
+
+Only students who have permission to access a course should be able to access restricted lessons.
+
+Public preview courses can be configured by the administrator.
+
+---
+
+# 13. COMMENTS & STUDENT FEEDBACK
+
+Students can comment on published courses.
+
+Each comment should contain:
+- Student name.
+- Student profile picture.
+- Comment content.
+- Date.
+- Course reference.
+
+The administrator can:
+
+- View all comments.
+- Approve comments.
+- Hide comments.
+- Delete inappropriate comments.
+- Reply to comments.
+
+Send an admin notification when a new comment is submitted.
+
+Implement validation, rate limiting, and basic spam protection.
+
+---
+
+# 14. CERTIFICATE GENERATOR — VERY IMPORTANT
+
+Create a professional certificate generation system inside the admin dashboard.
+
+This is a major feature.
+
+The administrator must have a dedicated page called:
+
+**Certificate Management**
+
+### Certificate creation
+
+Allow the administrator to:
+
+1. Select an existing student or manually enter student information.
+2. Enter the student's full name.
+3. Select the completed learning track.
+4. Select the instructor.
+5. Set the completion date.
+6. Enter a certificate ID.
+7. Add an optional grade or achievement.
+8. Preview the certificate.
+9. Generate the certificate.
+10. Download it as a PDF.
+
+### Certificate design
+
+Create an elegant, premium, internationally styled certificate.
+
+IMPORTANT:
+
+The entire certificate must be in ENGLISH ONLY, regardless of the website's selected language.
+
+Use a professional landscape A4 layout.
+
+Certificate text example:
+
+SYNTAX ACADEMY
+
+CERTIFICATE OF COMPLETION
+
+This certificate is proudly presented to
+
+[STUDENT FULL NAME]
+
+For successfully completing the
+
+[TRACK NAME]
+
+In recognition of dedication, commitment, and successful completion of the learning program.
+
+Instructor: [INSTRUCTOR NAME]
+
+Date of Completion: [DATE]
+
+Certificate ID: [UNIQUE ID]
+
+Authorized Signature
+
+Syntax Academy
+
+### Visual design
+
+- Premium dark navy, white, and subtle gold or purple accents.
+- Elegant typography.
+- Decorative borders.
+- Academy logo.
+- Professional certificate layout.
+- Clear visual hierarchy.
+- Signature area.
+- Unique verification QR code.
+
+### PDF requirements
+
+- Generate a real downloadable PDF.
+- Use high-quality text rendering.
+- Ensure the student's name is correctly displayed.
+- Keep the entire certificate in English.
+- Support long student names.
+- Avoid clipped or overlapping elements.
+- Use a consistent layout.
+- Make the PDF suitable for printing.
+
+### Certificate verification
+
+Create a public certificate verification page:
+
+`/verify-certificate/:certificateId`
+
+Display:
+- Certificate validity.
+- Student name.
+- Track name.
+- Instructor.
+- Completion date.
+- Certificate ID.
+
+Generate a unique certificate ID for every certificate.
+
+Never issue duplicate IDs.
+
+The administrator can revoke a certificate, and the public verification page must then show that it is no longer valid.
+
+Students can only view and download their own certificates.
+
+---
+
+# 15. NOTIFICATION SYSTEM
+
+Build a real notification system using Firestore.
+
+Students receive notifications when:
+
+- Their application is submitted.
+- Their application is accepted.
+- Their application is rejected.
+- A new course becomes available to them.
+- A certificate is issued.
+- The academy sends an important announcement.
+
+Administrators receive notifications when:
+
+- A new student registers.
+- A new application is submitted.
+- A student posts a comment.
+- A student submits feedback.
+
+Requirements:
+
+- Notification bell.
+- Unread count.
+- Notifications list.
+- Mark as read.
+- Mark all as read.
+- Notification timestamps.
+- Real-time updates using Firestore listeners.
+
+Notifications must be persisted, not just displayed temporarily.
+
+---
+
+# 16. ADDITIONAL ADMIN FEATURES
+
+Add these useful tools without making the dashboard complicated:
+
+### Student Management
+
+- View all students.
+- Search by name or email.
+- View student profiles.
+- View application history.
+- View enrolled tracks.
+- View certificates.
+- Suspend or reactivate accounts.
+- Add internal notes.
+
+### Announcement Management
+
+Allow the administrator to publish announcements.
+
+Students should see announcements in their dashboard.
+
+### Payment Management
+
+Create a simple payment tracking system.
+
+The administrator can:
+
+- View student payment records.
+- Add a payment record.
+- Assign a payment to a specific track.
+- Record the amount paid.
+- Record the payment date.
+- Mark payments as pending, paid, or partially paid.
+- View outstanding balances.
+
+The initial platform should support manual payment confirmation.
+
+Do not claim that a payment has been received automatically without actual payment gateway integration.
+
+Keep payment methods configurable so a payment gateway can be integrated later.
+
+### Settings
+
+Allow the administrator to manage:
+
+- Academy name.
+- Academy logo.
+- Contact phone number.
+- Contact email.
+- Social links.
+- Default language.
+- Google Forms links.
+- Application availability.
+- Homepage content.
+
+---
+
+# 17. FIREBASE DATABASE ARCHITECTURE
+
+Design a clean and scalable Firestore structure.
+
+Suggested collections:
+
+- users
+- adminUsers
+- tracks
+- instructors
+- applications
+- courses
+- lessons
+- enrollments
+- comments
+- certificates
+- notifications
+- announcements
+- payments
+- settings
+- auditLogs
+
+Use proper document relationships and references.
+
+Every student-related record should reference the authenticated user's UID.
+
+Implement:
+
+- Firestore Security Rules.
+- Firebase Storage Security Rules.
+- Server-side authorization for sensitive operations.
+- Admin-only write permissions where necessary.
+- Student ownership checks.
+- Input validation.
+- Safe database transactions.
+- Protection against unauthorized access.
+
+Never trust a role or UID supplied by the frontend without verifying authentication and authorization.
+
+Create a proper Firebase deployment and initialization structure.
+
+---
+
+# 18. TECHNICAL ARCHITECTURE
+
+Use a clean, maintainable, modular architecture.
+
+Preferred stack:
+
+- React.
+- TypeScript.
+- Vite.
+- Bootstrap 5.
+- React Router.
+- Firebase Authentication.
+- Cloud Firestore.
+- Firebase Storage.
+- Firebase Cloud Functions where required.
+- Lucide React icons.
+- A reliable PDF generation library.
+- A suitable chart library.
+
+Avoid unnecessary dependencies.
+
+Use reusable components.
+
+Separate:
+- Pages.
+- Components.
+- Hooks.
+- Context providers.
+- Firebase services.
+- API services.
+- Utilities.
+- Types.
+- Validation schemas.
+- Admin modules.
+- Student modules.
+
+Use TypeScript strictly.
+
+Do not use `any` unnecessarily.
+
+Keep the code organized and readable.
+
+---
+
+# 19. PERFORMANCE & USER EXPERIENCE
+
+The application must include:
+
+- Loading skeletons.
+- Loading indicators.
+- Friendly error messages.
+- Empty states.
+- Confirmation dialogs.
+- Toast notifications.
+- Form validation.
+- Pagination where appropriate.
+- Search and filters.
+- Optimized images.
+- Lazy loading.
+- Responsive navigation.
+- Error boundaries.
+
+Avoid unnecessary Firestore reads.
+
+Use proper query limits and pagination.
+
+Prevent duplicate submissions.
+
+Handle network interruptions gracefully.
+
+Never leave the user with a blank screen when an operation fails.
+
+---
+
+# 20. SECURITY REQUIREMENTS
+
+Security is mandatory.
+
+Implement:
+
+- Secure authentication.
+- Secure admin authorization.
+- Firestore security rules.
+- Storage security rules.
+- Server-side validation.
+- Input sanitization.
+- Protected routes.
+- Secure session handling.
+- Rate limiting for sensitive endpoints.
+- Safe handling of uploaded files.
+- Protection against unauthorized certificate creation.
+- Audit logs for important admin actions.
+
+Students must never be able to:
+- Change their role to admin.
+- Access another student's private data.
+- Approve their own applications.
+- Issue certificates.
+- Modify payment records.
+- Access restricted admin APIs.
+
+Do not put secret credentials in GitHub or frontend bundles.
+
+---
+
+# 21. TESTING & QUALITY ASSURANCE
+
+Do not consider the project finished simply because the pages look good.
+
+You must test actual functionality.
+
+Create and execute a comprehensive testing checklist.
+
+### Authentication tests
+
+- Student registration.
+- Email login.
+- Google login.
+- Logout.
+- Password reset.
+- Protected routes.
+
+### Student tests
+
+- Profile update.
+- Track application.
+- Duplicate application prevention.
+- Application status updates.
+- Notification delivery.
+- Course access.
+- Comments.
+- Certificate downloads.
+
+### Admin tests
+
+- Admin login.
+- Unauthorized admin access prevention.
+- Track creation and editing.
+- Track deletion and archival.
+- Instructor management.
+- Course publishing.
+- Application approval and rejection.
+- Student management.
+- Certificate generation.
+- Certificate verification.
+- Payment records.
+- Announcements.
+
+### Technical tests
+
+- TypeScript compilation.
+- Production build.
+- Firebase integration.
+- Firestore rules.
+- Storage permissions.
+- Mobile responsiveness.
+- Light and dark modes.
+- Arabic RTL.
+- English LTR.
+- PDF output.
+- Console errors.
+- Broken routes.
+- Network failures.
+
+Fix all errors discovered during testing.
+
+Do not hide errors with empty catch blocks or fake success messages.
+
+Do not mark a feature as complete unless it has been implemented and tested.
+
+---
+
+# 22. DELIVERY REQUIREMENTS
+
+Build the complete application, not just a visual prototype.
+
+Deliver:
+
+1. Fully functional public website.
+2. Fully functional student dashboard.
+3. Separate secured admin dashboard.
+4. Firebase Authentication integration.
+5. Firestore database integration.
+6. Firebase Storage integration.
+7. Firestore Security Rules.
+8. Firebase Storage Security Rules.
+9. Secure admin authentication.
+10. Working application workflow.
+11. Working notification system.
+12. Working course publishing system.
+13. Working certificate generator with PDF downloads.
+14. Certificate verification page.
+15. Arabic and English support.
+16. Light and dark themes.
+17. Responsive layouts.
+18. `.env.example`.
+19. Firebase setup instructions.
+20. Deployment instructions.
+21. Testing checklist.
+
+### IMPORTANT EXECUTION INSTRUCTIONS
+
+- First inspect the existing project if one is provided.
+- Preserve useful existing functionality.
+- Do not unnecessarily delete existing files.
+- Do not rewrite working modules without a good reason.
+- Plan the database and application architecture before implementation.
+- Implement the project in logical stages.
+- Connect every feature to its real backend.
+- Do not use mock data as a replacement for real functionality.
+- Seed the four initial learning tracks and three initial instructors.
+- Ensure all initial prices are correct.
+- Make all admin-created content dynamically available on the public website.
+- Never expose private information.
+
+If an external integration requires credentials, create a clear configuration screen or setup instructions rather than pretending it is already connected.
+
+If you cannot complete a feature, explicitly explain what remains instead of presenting it as functional.
+
+**FINAL GOAL:**
+
+Deliver a beautiful, reliable, secure, scalable, and fully functional online education platform for Syntax Academy that can be deployed and used by real students and administrators.
+
+The platform must feel like a professional commercial educational product, with a simple experience for students and powerful but easy-to-use management tools for the academy administrator.
+
+Quality, functionality, security, and reliability are more important than simply generating code quickly.
